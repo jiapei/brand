@@ -1,0 +1,21 @@
+development:
+  sessions:
+    default:
+      identity_map_enabled: true
+      database: chezhongguo_development
+      hosts:
+        - 127.0.0.1:27017
+localcar:
+  sessions:
+    default:
+      identity_map_enabled: true
+      database: qqcar
+      hosts:
+        - 127.0.0.1:27017
+chezhongguo:
+  sessions:
+    default:
+      identity_map_enabled: true	
+      database: chezhongguo
+      hosts:
+        - 127.0.0.1:27017
