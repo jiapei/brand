@@ -10,6 +10,6 @@ class Maker
   field :code, :type => String
   field :serials, :type => Array
 
-  embedded_in :brand
+  belongs_to :brand
   has_many :car_serials
   end

@@ -1,15 +1,18 @@
-class Brand
+锘縞lass Brand
   include Mongoid::Document
   include Mongoid::Timestamps
-  #名称，logo，国家，品牌说明，logo说明
+  #鍚嶇О锛宭ogo锛屽浗瀹讹紝鍝佺墝璇存槑锛宭ogo璇存槑, temp_logo_url
   field :name, type: String
   field :name_pinyin, type: String
   field :country, type: String
   field :brand_summary, type: String
   field :logo_summary, type: String
-  mount_uploader :logo_image, PhotoUploader
+
+  field :temp_logo_url, type: String
+
+  #mount_uploader :logo_image, PhotoUploader
+
   index({name: 1})
-	
   index({name_pinyin: 1})
 	
   #embeds_many :parameters
@@ -20,27 +23,7 @@ class Brand
 protected
 	
   def update_name_pinyin
-	
     self.name_pinyin = Pinyin.t(self.name, '').downcase.to_s 
-	
   end
 	
 end
-
-=begin
-class Brand
-  include Mongoid::Document
-  
-  field :name, :type => String
-  field :name_pinyin, :type => String
-  field :pic, :type => String
-  field :pic_url, :type => String
-  field :url, :type => String
-  field :code, :type => String
-  field :tip, :type => String
-
-  embeds_many :makers
-  
-  scope :bitautocar, where(tip: "bitautocar")
-  end
- =end

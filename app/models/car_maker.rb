@@ -11,4 +11,4 @@ class CarMaker
   field :serials, :type => Array
 
   has_many :car_serials
-  end
+end
