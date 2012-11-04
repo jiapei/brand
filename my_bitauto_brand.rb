@@ -32,6 +32,8 @@ create_file_to_write
 total = @url_items.count
 
 @url_items.each_with_index do |url, i|
+puts url.split('/')[3]
+#break
 
 	detail_url = "#{url}"
 	puts "#{i}/#{total} : #{detail_url}"
@@ -41,7 +43,7 @@ total = @url_items.count
 	logo_url = @doc.at_css('div.logo_story > dl > dt > img').attr("src")
 	brand_summary = @doc.at_css('div#aa').text.strip_tag.strip
 	logo_summary = @doc.at_css('div#bb').text.strip_tag.strip
-	brand_name = @doc.at_css('h6 > a').text.strip
+	brand_name = @doc.at_css('h1 > a').text.strip
 	name_pinyin = Pinyin.t(brand_name, '').downcase.to_s
 
 	@file_to_write.puts "#{Time.now.to_formatted_s(:number)}\t #{i}\t#{brand_name}\t#{name_pinyin}\t#{brand_summary}\t#{logo_summary}\t#{logo_url}"
@@ -50,9 +52,13 @@ total = @url_items.count
 
 	@brand.name = brand_name
 	@brand.name_pinyin = name_pinyin
+  @brand.name_en = url.split('/')[3]
 	@brand.brand_summary = brand_summary
 	@brand.logo_summary = logo_summary
-	@brand.temp_logo_url = logo_url
+  @brand.display_index = 1
+  @brand.hot_index = 1
+
+  @brand.temp_logo_url = logo_url
 
 	@brand.save
 
